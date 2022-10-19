@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Fonts/ForestRoad-0WPyv.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Interaction prompt.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=7]
+size = 100
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Floating"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -11 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -21 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Fade In"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Fade Out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Interaction prompt" type="Area2D"]
+visible = false
+position = Vector2( 0, -21 )
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 7.0
+margin_right = 41.0
+margin_bottom = 107.0
+custom_fonts/font = SubResource( 7 )
+text = "E"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Float Anim" type="AnimationPlayer" parent="."]
+anims/Floating = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="Fade Anim" type="AnimationPlayer" parent="."]
+"anims/Fade In" = SubResource( 4 )
+"anims/Fade Out" = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[connection signal="body_entered" from="." to="." method="_on_Interaction_prompt_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Interaction_prompt_body_exited"]
+[connection signal="animation_finished" from="Fade Anim" to="." method="_on_Fade_Anim_animation_finished"]

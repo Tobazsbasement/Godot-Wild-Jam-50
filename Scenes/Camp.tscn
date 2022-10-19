@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Camp/Background Shadows.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Camp/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Camp/Camp base layer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Camp/Light.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Camp/Final Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Camp/Barrier.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Camp/Tree part.tscn" type="PackedScene" id=7]
+
+[node name="Camp" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Background Shadows" parent="." instance=ExtResource( 1 )]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+transform = Transform2D( 0.1, 0, 0, 0.1, 0, 0 )
+
+[node name="Background" parent="Background Shadows" instance=ExtResource( 2 )]
+scale = Vector2( 1, 1 )
+
+[node name="Camp base layer" parent="." instance=ExtResource( 3 )]
+
+[node name="Light" parent="." instance=ExtResource( 4 )]
+scale = Vector2( 0.04, 0.04 )
+
+[node name="Final Door" parent="." instance=ExtResource( 5 )]
+
+[node name="Barrier" parent="." instance=ExtResource( 6 )]
+
+[node name="Tree part" parent="." instance=ExtResource( 7 )]
+
+[editable path="Background Shadows"]
