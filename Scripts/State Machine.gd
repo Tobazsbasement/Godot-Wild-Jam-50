@@ -19,9 +19,6 @@ func _ready():
 func _unhandled_input(event: InputEvent):
 	state.handle_input(event)
 
-func _process(delta):
-	state.update(delta)
-
 func _physics_process(delta):
 	state.physics_update(delta)
 
