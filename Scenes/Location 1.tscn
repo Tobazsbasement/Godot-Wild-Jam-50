@@ -1,24 +1,38 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Location 1/bg.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Location 1/1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Barrier.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Final Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Super Jump.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Location 1/+1 final door.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Location 1/+2.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Location 1/flashlights.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Location 1/+1 tree door.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Camp.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Light Checker.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Ultimate Bench.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Level Beat Check.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Fall Zone.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2656, 371 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1376.51, 846.562 )
+extents = Vector2( 1376.51, 2172.64 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 302, 1130 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 201.5, 574 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5521, 218 )
 
 [node name="Camp" type="Node2D"]
-__meta__ = {
-"_edit_group_": true
-}
+script = ExtResource( 11 )
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -37,15 +51,19 @@ position = Vector2( 994, 738 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 14956, -8355.77 )
+position = Vector2( 15292.7, -8909.65 )
 rotation = 0.546288
 shape = SubResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
-polygon = PoolVector2Array( 5438, 770, 5350, 478, 5168, 298, 4454, 96, 4366, 22, 4374, -60, 4532, -92, 6216, -52, 6310, -216, 5304, -706, 5164, -866, 5230, -980, 7236, -1010, 7076, -1644, 7160, -1744, 7976, -1668, 8290, -1738, 10228, -1930, 10496, -2576, 10378, -3222, 10282, -3252, 10372, -3318, 11662, -3314, 11858, -3508, 12468, -3638, 12974, -3532, 13294, -3380, 13818, -3500, 14394, -3000, 15170, -2956, 15750, -3200, 16346, -3242, 16620, -3710, 16320, -4218, 15602, -4582, 12472, -5360, 12132, -5170, 11504, -5442, 11380, -6148, 11696, -6308, 12308, -6300, 14372, -5480, 16358, -5296, 20764, -5328, 22368, -5374, 22254, -3244, 12986, -64, 6034, 1528 )
+polygon = PoolVector2Array( 5438, 770, 5350, 478, 5168, 298, 4454, 96, 4366, 22, 4374, -60, 4532, -92, 6216, -52, 6310, -216, 5304, -706, 5164, -866, 5232, -968, 7256, -990, 7076, -1644, 7160, -1744, 7976, -1668, 8290, -1738, 10228, -1930, 10496, -2576, 10378, -3222, 10282, -3252, 10372, -3318, 11662, -3314, 11858, -3508, 12468, -3638, 12974, -3532, 13294, -3380, 13818, -3500, 14394, -3000, 15170, -2956, 15750, -3200, 16346, -3242, 16620, -3710, 16320, -4218, 15602, -4582, 12472, -5360, 12132, -5170, 11504, -5442, 11380, -6148, 11696, -6308, 12308, -6300, 14304, -5482, 16402, -5376, 20770, -5382, 22376, -5490, 22254, -3244, 12986, -64, 6034, 1528 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2( -1888, -724 )
+shape = SubResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( -5047, 2226 )
+position = Vector2( -4894, 2297 )
 
 [node name="Flashlights" type="Sprite" parent="."]
 texture = ExtResource( 7 )
@@ -55,10 +73,69 @@ position = Vector2( -3620, 2275 )
 texture = ExtResource( 9 )
 
 [node name="Barrier" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 2337, -817 )
 
-[node name="Final Door" parent="." instance=ExtResource( 5 )]
+[node name="Final Door" type="Sprite" parent="."]
 position = Vector2( 5684, -845 )
+texture = ExtResource( 5 )
 
 [node name="Foreground" type="Sprite" parent="."]
 texture = ExtResource( 6 )
+
+[node name="Super Jump" parent="." instance=ExtResource( 4 )]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" parent="Super Jump" index="3"]
+autoplay = "Float"
+
+[node name="Light Checker" parent="." instance=ExtResource( 12 )]
+position = Vector2( 4907, -1985 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="Predators" parent="Light Checker" index="0"]
+position = Vector2( -636, 846 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" parent="Light Checker" index="1"]
+position = Vector2( -575.001, 728.372 )
+rotation = 0.174533
+
+[node name="UI" parent="." instance=ExtResource( 10 )]
+
+[node name="Ultimate Bench" parent="." instance=ExtResource( 13 )]
+position = Vector2( -4216, 2337 )
+
+[node name="Level Beat Check" parent="." instance=ExtResource( 14 )]
+position = Vector2( 6065, -983 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" parent="Level Beat Check" index="0"]
+position = Vector2( 191.5, -94 )
+shape = SubResource( 3 )
+
+[node name="Fall Zone" parent="." instance=ExtResource( 15 )]
+position = Vector2( -4158, 3478 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" parent="Fall Zone" index="0"]
+position = Vector2( 4680, -228 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Light Checker" to="." method="_on_Light_Checker_body_entered"]
+[connection signal="body_exited" from="Light Checker" to="." method="_on_Light_Checker_body_exited"]
+
+[editable path="Super Jump"]
+[editable path="Super Jump/Interaction prompt"]
+[editable path="Light Checker"]
+[editable path="Level Beat Check"]
+[editable path="Fall Zone"]

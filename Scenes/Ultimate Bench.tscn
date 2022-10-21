@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Interaction prompt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Ultimate Bench.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/1 Ultimate Energy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 74, 36 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 75.5, 37.1192 )
+
+[node name="Ultimate Bench" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, 26 )
+shape = SubResource( 1 )
+
+[node name="Interaction prompt" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="CollisionShape2D" parent="Interaction prompt" index="0"]
+position = Vector2( 3, 297.918 )
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -75, -83 )
+
+[node name="1 Ultimate Energy" parent="." instance=ExtResource( 3 )]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[connection signal="body_entered" from="." to="." method="_on_Ultimate_Bench_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Ultimate_Bench_body_exited"]
+[connection signal="animation_finished" from="1 Ultimate Energy/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Interaction prompt"]
+[editable path="1 Ultimate Energy"]

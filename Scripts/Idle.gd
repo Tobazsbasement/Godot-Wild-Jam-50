@@ -1,7 +1,11 @@
 extends PlayerState
 
 func enter():
+	player.sprite.play("Idle")
 	player.velocity.x = lerp(player.velocity.x, 0, player.friction)
+	if PlayerStats.double_jump_unlocked:
+		player.jump_count = 1
+		player.hurtbox.disabled = true
 
 func exit():
 	pass
@@ -19,3 +23,4 @@ func physics_update(delta):
 		state_machine.transition_to("Jump")
 	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
 		state_machine.transition_to("Walk")
+

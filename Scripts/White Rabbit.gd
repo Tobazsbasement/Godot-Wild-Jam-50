@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var sprite = $Sprite
+onready var position_dialogue = $Position2D
 
 const DIALOGUE = preload("res://Scenes/Dialogue Box.tscn")
 
@@ -33,6 +34,7 @@ func _input(event):
 		if can_interract and not spawned:
 			dialogue = DIALOGUE.instance()
 			dialogue.dialoguepath = "res://Assets/Dialogues/Test Dialogue.json"
-			get_parent().add_child(dialogue)
+			add_child(dialogue)
+			dialogue.global_position = position_dialogue.global_position
 			spawned = true
 

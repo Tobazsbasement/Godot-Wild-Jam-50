@@ -1,8 +1,8 @@
-extends Control
+extends Node2D
 
-onready var timer = $CanvasLayer/Timer
-onready var text = $CanvasLayer/RichTextLabel
-onready var label = $CanvasLayer/Label
+onready var timer = $Timer
+onready var text = $RichTextLabel
+onready var label = $Sprite
 export var dialoguepath = ""
 export var text_speed = 0.016
 

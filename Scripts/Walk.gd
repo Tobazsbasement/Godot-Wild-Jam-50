@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter():
-	pass
+	player.sprite.play("Running")
+	if PlayerStats.double_jump_unlocked:
+		player.jump_count = 1
+		player.hurtbox.disabled = true
 
 func exit():
 	pass
@@ -36,3 +39,4 @@ func physics_update(delta):
 		state_machine.transition_to("Jump")
 	elif is_equal_approx(input_direction_x, 0):
 		state_machine.transition_to("Idle")
+
